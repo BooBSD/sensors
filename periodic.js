@@ -8,7 +8,9 @@ Date.prototype.timestamp = function() {
 exports.checkAM2302 = function() {
 	var getData = function() {
 		exec(config.AM2302.command, function(error, stdout, stderror) {
-			if(stdout) {
+			if(error) console.log(error)
+			else if(stderror) console.log(stderror)
+			else {
 				var result = stdout.match(/Temp =\s+([0-9.]+).+Hum =\s+([0-9.]+)/im);
 				if(result) {
 					var ts = new Date().timestamp();
