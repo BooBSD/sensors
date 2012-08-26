@@ -4,6 +4,6 @@
     "private": true,
     "dependencies": {
         "redis": "0.7.2",
-        "reminder": "0.1.0"
+        "reminder": "0.1.1"
     }
 }
