@@ -12,7 +12,8 @@ exports.checkAM2302 = function(date) {
 			else {
 				var result = stdout.match(/Temp =\s+([0-9.]+).+Hum =\s+([0-9.]+)/im);
 				if(result) {
-					var data = date.timestamp() + ',' + result[1] + ',' + result[2];
+					var ts = date.timestamp()
+					var data = ts + ',' + result[1] + ',' + result[2];
 					redis.zadd('sensors:AM2302', ts, data, function(error) {
 						if(!error) clearInterval(getDataTimer);
 					});
