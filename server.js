@@ -10,7 +10,6 @@ redis.on('error', function(error) {
 });
 
 redis.on('ready', function() {
-	periodic.checkAM2302() // Run first time after starting.
 	remind.every(config.AM2302.timeout, periodic.checkAM2302)
 	console.log('Sensors started to collect data.');
 });
