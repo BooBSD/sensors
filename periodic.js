@@ -1,4 +1,6 @@
-var exec = require('child_process').exec
+var exec = require('child_process').exec,
+	util = require('util')
+
 
 Date.prototype.timestamp = function() {
 	return Math.floor(this.getTime() / 1000)
@@ -15,7 +17,10 @@ exports.checkAM2302 = function(date) {
 					var ts = date.timestamp()
 					var data = ts + ',' + result[1] + ',' + result[2];
 					redis.zadd('sensors:AM2302', ts, data, function(error) {
-						if(!error) clearInterval(getDataTimer);
+						if(!error) {
+							clearInterval(getDataTimer);
+							util.log('Saving new data from sensor AM2302.');
+						}
 					});
 				}
 			}
